@@ -49,7 +49,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100/80 py-2'
+            ? 'bg-[#0B1220]/97 backdrop-blur-md shadow-lg border-b border-white/8 py-2'
             : 'bg-transparent py-5'
         }`}
       >
@@ -61,11 +61,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between gap-8">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0" aria-label="Lechecol ZF — Inicio">
-            <div className={`transition-all duration-300 ${
-              scrolled
-                ? 'bg-white rounded-xl shadow-sm border border-gray-100 px-3 py-1'
-                : ''
-            }`}>
+            <div>
               <Image
                 src="/images/logo/lechecol-zf-logo.png"
                 alt="Lechecol ZF"
@@ -88,11 +84,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                    scrolled
-                      ? 'text-[#2D3436] hover:text-[#0066B3] hover:bg-[#F7F8FA]'
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
-                  }`}
+                  className="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 text-white/80 hover:text-white hover:bg-white/10"
                 >
                   {link.label}
                   {link.children && (
@@ -107,12 +99,12 @@ export default function Header() {
 
                 {/* Dropdown */}
                 {link.children && openDropdown === link.href && (
-                  <div className="absolute top-full left-0 mt-2 w-60 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 ring-1 ring-black/5">
+                  <div className="absolute top-full left-0 mt-2 w-60 bg-[#0D1829] rounded-xl shadow-2xl border border-white/10 py-2 z-50">
                     {link.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#2D3436] hover:text-[#0066B3] hover:bg-[#F7F8FA] transition-colors group/child"
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/8 transition-colors group/child"
                       >
                         <span className="w-1 h-1 rounded-full bg-[#F5A800]/40 group-hover/child:bg-[#F5A800] transition-colors flex-shrink-0" />
                         {child.label}
@@ -145,7 +137,7 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-[#2D3436] hover:bg-[#F7F8FA]' : 'text-white hover:bg-white/10'}`}
+            className="lg:hidden p-2 rounded-lg transition-colors text-white hover:bg-white/10"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Abrir menú"
             aria-expanded={mobileOpen}
