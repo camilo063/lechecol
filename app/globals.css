@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
+@theme {
+  --color-lechecol-blue: #0066B3;
+  --color-lechecol-navy: #003D7A;
+  --color-lechecol-orange: #F5A800;
+  --color-lechecol-dark: #0B1220;
+  --color-whatsapp: #25D366;
+  --color-body: #2D3436;
+  --color-muted: #636E72;
+  --color-surface: #F7F8FA;
+
+  --font-serif: var(--font-dm-serif);
+  --font-sans: var(--font-dm-sans);
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2D3436;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-dm-serif), "DM Serif Display", Georgia, serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h5, h6 {
+  font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #0066B3;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #0066B3;
+  outline-offset: 3px;
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F8FA;
+}
+::-webkit-scrollbar-thumb {
+  background: #0066B3;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #003D7A;
+}
+
+/* ─── Utility: Grain texture overlay ───────────────────────────────────── */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ─── Utility: Gradient text ─────────────────────────────────────────── */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #F5A800 0%, #FFD166 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #0066B3 0%, #003D7A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Utility: Dot grid pattern ─────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dot-grid-dark {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── Utility: Line grid pattern ────────────────────────────────────── */
+.line-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Utility: Diagonal clip paths ─────────────────────────────────── */
+.clip-diagonal-down {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.clip-diagonal-up {
+  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%);
+}
+
+/* ─── Brands carousel ───────────────────────────────────────────────── */
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* ─── WhatsApp pulse ────────────────────────────────────────────────── */
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50%       { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+}
+.wa-pulse {
+  animation: wa-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Shimmer loading ───────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ─── Form input base style ─────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  padding: 0.75rem 0;
+  font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.input-field::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.input-field:focus {
+  border-bottom-color: #F5A800;
+}
+.input-field option {
+  background: #0B1220;
+  color: white;
 }
