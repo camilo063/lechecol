@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedSection from '@/components/shared/AnimatedSection';
 
 const milestones = [
@@ -23,30 +24,29 @@ export default function AboutPreview() {
           {/* Left visual block */}
           <AnimatedSection className="lg:col-span-5" direction="left">
             <div className="relative">
-              {/* Main dark card */}
-              <div className="relative bg-[#0B1220] rounded-2xl overflow-hidden aspect-[3/4] max-w-sm">
-                {/* Grid pattern */}
-                <div
-                  className="absolute inset-0 opacity-[0.06]"
-                  style={{
-                    backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-                    backgroundSize: '40px 40px',
-                  }}
-                  aria-hidden="true"
+              {/* Main photo card */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/2]">
+                {/* Team photo */}
+                <Image
+                  src="/images/nosotros/equipo-lechecol.jpg"
+                  alt="Equipo Lechecol ZF frente a la planta Zona Franca Tocancipá"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                 />
-                {/* Glow */}
-                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-[#0066B3]/20 to-transparent" aria-hidden="true" />
 
-                {/* TODO: Reemplazar con foto real de la planta */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                  <div className="font-serif text-[5rem] leading-none text-white/10 select-none mb-2">ZF</div>
-                  <div className="text-[#F5A800] font-mono text-xs tracking-[0.2em] uppercase mb-3">Zona Franca Tocancipá</div>
-                  <div className="font-serif text-white text-3xl leading-tight">Planta propia<br />desde 2017</div>
+                {/* Dark gradient overlay — stronger at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220]/80 via-[#0B1220]/20 to-transparent" aria-hidden="true" />
+
+                {/* Bottom label */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="text-[#F5A800] font-mono text-[10px] tracking-[0.2em] uppercase mb-1">Zona Franca Tocancipá</div>
+                  <div className="font-serif text-white text-xl leading-tight">Nuestro equipo,<br />nuestra fortaleza</div>
                 </div>
 
                 {/* Orange corner accent */}
                 <div className="absolute bottom-0 right-0">
-                  <div className="w-20 h-20 bg-[#F5A800]" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} aria-hidden="true" />
+                  <div className="w-16 h-16 bg-[#F5A800]" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} aria-hidden="true" />
                 </div>
               </div>
 

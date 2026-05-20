@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { products } from '@/lib/data/products';
 import AnimatedSection from '@/components/shared/AnimatedSection';
 
@@ -40,28 +41,18 @@ export default function ProductsGrid() {
                   aria-hidden="true"
                 />
 
-                {/* Image placeholder area */}
+                {/* Product image */}
                 <div
-                  className="w-full md:w-48 h-40 md:h-auto flex-shrink-0 flex items-center justify-center relative overflow-hidden"
-                  style={{ backgroundColor: product.color + '12' }}
+                  className="w-full md:w-48 h-48 md:h-auto flex-shrink-0 relative overflow-hidden"
+                  style={{ backgroundColor: product.color + '10' }}
                 >
-                  {/* TODO: Reemplazar con next/image cuando lleguen las fotos reales */}
-                  <div className="text-center p-6">
-                    <div
-                      className="w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center"
-                      style={{ backgroundColor: product.color + '20' }}
-                    >
-                      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{ color: product.color }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                      </svg>
-                    </div>
-                    <span
-                      className="text-xs font-bold uppercase tracking-widest"
-                      style={{ color: product.color }}
-                    >
-                      {product.brand}
-                    </span>
-                  </div>
+                  <Image
+                    src={product.image}
+                    alt={`${product.brand} — ${product.name}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 192px"
+                  />
                 </div>
 
                 {/* Content */}

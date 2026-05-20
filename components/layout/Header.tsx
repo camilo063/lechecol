@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CONTACT, WHATSAPP_MESSAGES } from '@/lib/constants';
 
 const navLinks = [
@@ -59,23 +60,20 @@ export default function Header() {
 
         <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between gap-8">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3 group" aria-label="Lechecol ZF — Inicio">
-            <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-serif font-bold text-base transition-colors ${
-              scrolled ? 'bg-[#0066B3] text-white' : 'bg-white/15 text-white border border-white/20'
+          <Link href="/" className="flex-shrink-0" aria-label="Lechecol ZF — Inicio">
+            <div className={`transition-all duration-300 ${
+              scrolled
+                ? 'bg-white rounded-xl shadow-sm border border-gray-100 px-3 py-1'
+                : ''
             }`}>
-              L
-            </div>
-            <div>
-              <span className={`font-serif text-lg font-bold block leading-none transition-colors ${
-                scrolled ? 'text-[#003D7A]' : 'text-white'
-              }`}>
-                Lechecol ZF
-              </span>
-              <span className={`text-[10px] italic block leading-none mt-0.5 font-mono transition-colors ${
-                scrolled ? 'text-[#636E72]' : 'text-white/50'
-              }`}>
-                Calidad que alimenta tu vida
-              </span>
+              <Image
+                src="/images/logo/lechecol-zf-logo.png"
+                alt="Lechecol ZF"
+                width={280}
+                height={78}
+                className="h-10 w-auto object-contain"
+                priority
+              />
             </div>
           </Link>
 
